@@ -3,11 +3,11 @@
 #include "ArduDetectorLibrary.h"
 
 /* Board Heltec Wireless Stick */
-#define S0 12    // S0 a pin 4
-#define S1 13    // S1 a pin 5
-#define S2 17    // S2 a pin 6
-#define S3 23    // S3 a pin 7
-#define outputTCS 39 // salidaTCS a pin 8
+#define S0 12
+#define S1 13
+#define S2 17
+#define S3 23
+#define outputTCS 39
 SensorRGB sensorRGB(S0, S1, S2, S3, outputTCS);
 
 void setup() {
@@ -18,6 +18,8 @@ void setup() {
   // Heltec.display->setFont(ArialMT_Plain_10);
   Serial.begin(9600);
   sensorRGB.InitSensorRGB();
+  sensorRGB.SetParametersColors(SensorRGB::RED, 180,581,419);
+  sensorRGB.SetParametersColors(SensorRGB::BLUE, 870,430,194);
 
 }
 
@@ -27,25 +29,25 @@ void loop() {
    //}
     Heltec.display->clear();
     sensorRGB.ReadRGB();
-    Serial.print("R:");     // muestra texto
+    Serial.print("R:");
     Serial.print(sensorRGB.GetValueRGB(SensorRGB::REDLIGHT));     // muestra valor de variable rojo
-    Serial.print("\t");     // espacio de tabulacion
+    Serial.print("\t");
     
 
-    Serial.print("V:");     // muestra texto
+    Serial.print("V:");
     Serial.print(sensorRGB.GetValueRGB(SensorRGB::GREENLIGHT));      // muestra valor de variable verde
-    Serial.print("\t");     // espacio de tabulacion
+    Serial.print("\t");
     
     
-    Serial.print("A:");     // muestra texto
+    Serial.print("A:");
     Serial.print(sensorRGB.GetValueRGB(SensorRGB::BLUELIGHT));     // muestra valor de variable azul
-    Serial.println();// y salto de linea
+    Serial.println();
 
     Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
     Heltec.display->setFont(ArialMT_Plain_10);
-    sensorRGB.SetParametersColors(SensorRGB::RED, 180,581,419);
-    if(sensorRGB.DetectedColor()){
-      Heltec.display->drawString(0, 0, "Red: " + String(sensorRGB.DetectedColor()));
+
+    if(sensorRGB.DetectColor()){
+      Heltec.display->drawString(0, 0, "Color #: " + String(sensorRGB.GetDetectedColor()));
     }
     else{
       Heltec.display->drawString(0, 0, "Red: " + String(sensorRGB.GetValueRGB(SensorRGB::REDLIGHT)));

@@ -6,7 +6,7 @@
 class SensorRGB{
 private:
     /* data */
-    int8_t _S0, _S1, _S2, _S3, _outputTCS;
+    int8_t _colorState, _S0, _S1, _S2, _S3, _outputTCS;
     uint16_t _redLight, _greenLight, _blueLight;
     int16_t _RedForGrayColor, _GreenForGrayColor, _BlueForGrayColor;
     int16_t _RedForBlackColor, _GreenForBlackColor, _BlueForBlackColor;
@@ -35,9 +35,10 @@ public:
     SensorRGB(int8_t S0, int8_t S1, int8_t S2, int8_t S3, int8_t outputTCS);
     void InitSensorRGB();
     bool ReadRGB();
-    int DetectedColor();
+    bool DetectColor();
     void SetParametersColors(Colors color, int16_t avgRedLight, int16_t avgGreenLight, int16_t avgBlueLight);
     int GetValueRGB(ValuesRGB colorRGB);
+    int GetDetectedColor();
     // ~SensorRGB();
 };
 
