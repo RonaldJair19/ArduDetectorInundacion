@@ -12,6 +12,7 @@ Scanner::Scanner(/* args */){
     _org = 0;
     _re = 0;
     _indexMain = 0;
+    _presentColor = COLORLESS;
 }
 
 void Scanner::SetCurrentTime(uint32_t currentTime){
@@ -54,7 +55,7 @@ void Scanner::AddColorDetected(uint8_t newColor){
     _colorAdded[_indexMain] = newColor;
     _indexMain++;
     }
-    else if((_blk != 0) && (_colorsAssigned[_indexMain-2] == newColor)){
+    else if((_blk != 0) && (_colorsAssigned[_indexMain-2] == newColor) && (newColor != GRAY)){
         _indexMain--;
         switch (_colorAdded[_indexMain]){
             case BLACK:
@@ -80,9 +81,14 @@ void Scanner::AddColorDetected(uint8_t newColor){
         }
         _colorAdded[_indexMain] = COLORLESS;
     }
-    else if(newColor == GRAY){
-        _blk--;
-        _indexMain = 0;
+    // else if(newColor == GRAY){
+    //     _blk--;
+    //     _indexMain = 0;
+    //     _colorAdded[_indexMain] = COLORLESS;
+    //     _presentColor = _colorAdded[_indexMain];
+    // }
+    if(_indexMain > 0){
+        _presentColor = _colorAdded[_indexMain-1];
     }
 }
 
@@ -109,4 +115,12 @@ uint8_t Scanner::GetCountColor(Colors Color){
         default:
             break;
     }
+}
+
+uint8_t Scanner::GetColorState(){
+    return _presentColor;
+}
+
+float Scanner::GetDistanceTraveled(){
+    _distanceTraveledY = (_blk+_bl+_gr+_yw+_org+_re) * (SEPARATION_DISTANCE);
 }
