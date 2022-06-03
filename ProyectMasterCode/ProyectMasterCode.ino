@@ -1,6 +1,9 @@
 #include "Arduino.h"
 #include "heltec.h"
 #include "ArduDetectorLibrary.h"
+#include <TTN_esp32.h>
+#include "TTN_CayenneLPP.h"
+#include "LoRaConfig.h" //Create this library and add your credentials of The Things Stack
 
 /* Board Heltec Wireless Stick */
 #define S0 12
@@ -8,8 +11,11 @@
 #define S2 17
 #define S3 23
 #define outputTCS 39
+
 SensorRGB sensorRGB(S0, S1, S2, S3, outputTCS);
 Scanner scanner;
+TTN_esp32 ttn ;
+TTN_CayenneLPP lpp;
 
 void setup() {
   Heltec.begin(true /*Display Enable*/, false /*LoRa Disable*/, true /*Serial Enable*/);
@@ -18,6 +24,7 @@ void setup() {
   // Heltec.display->flipScreenVertically();
   // Heltec.display->setFont(ArialMT_Plain_10);
   Serial.begin(9600);
+  Serial.println(String(devAddr));
   sensorRGB.InitSensorRGB();
   sensorRGB.SetParametersColors(SensorRGB::BLACK, 900,900,700);
   sensorRGB.SetParametersColors(SensorRGB::BLUE, 700,300,150);
