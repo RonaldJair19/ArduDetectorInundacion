@@ -3,6 +3,9 @@
 #define offsetNegative 100
 #define offsetPositive 150
 
+/* ===========================================*/
+/*              Class SensorRGB               */
+/* ===========================================*/
 class SensorRGB{
 private:
     /* data */
@@ -42,4 +45,39 @@ public:
     // ~SensorRGB();
 };
 
+/* ===========================================*/
+/*                Class Scanner               */
+/* ===========================================*/
+class Scanner{
+private:
+    /* data */
+    uint8_t _colorsAssigned[13] = {2,3,4,5,6,7,2,3,4,5,6,7};
+    uint8_t _colorAdded[13], _blk, _bl, _gr, _yw, _org, _re;
+    uint8_t _indexMain;
+    uint8_t _presentColor;
+    uint32_t _currentTime, _previusTime, _elapsedTime;
+    float _distanceTraveledY, _separationDistance;
 
+public:
+    enum Colors{
+        COLORLESS,
+        GRAY,
+        BLACK,
+        BLUE,
+        GREEN,
+        YELLOW,
+        ORANGE,
+        RED
+    };
+    Scanner(/* args */);
+    void SetSeparationDistance(float SeparationDistance);
+    void SetCurrentTime(uint32_t currentTime);
+    void CalculateElapsedTime();
+    uint32_t GetElapsedTime();
+    uint32_t GetElapsedTime(uint32_t currentTime);
+    bool AddColorDetected(uint8_t newColor);
+    uint8_t GetCountColor(Colors Color);
+    uint8_t GetColorState();
+    float GetDistanceTraveled();
+    // ~Scanner();
+};

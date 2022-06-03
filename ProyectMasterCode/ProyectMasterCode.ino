@@ -9,6 +9,7 @@
 #define S3 23
 #define outputTCS 39
 SensorRGB sensorRGB(S0, S1, S2, S3, outputTCS);
+Scanner scanner;
 
 void setup() {
   Heltec.begin(true /*Display Enable*/, false /*LoRa Disable*/, true /*Serial Enable*/);
@@ -18,8 +19,11 @@ void setup() {
   // Heltec.display->setFont(ArialMT_Plain_10);
   Serial.begin(9600);
   sensorRGB.InitSensorRGB();
+  sensorRGB.SetParametersColors(SensorRGB::BLACK, 900,900,700);
+  sensorRGB.SetParametersColors(SensorRGB::BLUE, 700,300,150);
+  sensorRGB.SetParametersColors(SensorRGB::GREEN, 700,400,400);
   sensorRGB.SetParametersColors(SensorRGB::RED, 180,581,419);
-  sensorRGB.SetParametersColors(SensorRGB::BLUE, 870,430,194);
+  scanner.SetSeparationDistance(0.30);
 
 }
 
@@ -48,6 +52,18 @@ void loop() {
 
     if(sensorRGB.DetectColor()){
       Heltec.display->drawString(0, 0, "Color #: " + String(sensorRGB.GetDetectedColor()));
+      if(scanner.AddColorDetected(sensorRGB.GetDetectedColor())){
+        Serial.println("Tiempo: "+String(scanner.GetElapsedTime(millis())));
+        Serial.println("blk: "+String(scanner.GetCountColor(Scanner::BLACK)));
+        Serial.println("bl: "+String(scanner.GetCountColor(Scanner::BLUE)));
+        Serial.println("gr: "+String(scanner.GetCountColor(Scanner::GREEN)));
+        Serial.println("Color actual: " + String(scanner.GetColorState()));
+        Serial.println("Distancia recorrida: "+String(scanner.GetDistanceTraveled()));
+      }
+      if(sensorRGB.GetDetectedColor() == scanner.GetColorState()){
+        Heltec.display->drawString(0, 10, "Time: " + String(((int)scanner.GetElapsedTime())/1000));
+        Heltec.display->drawString(0, 20, "Dist: " + String(scanner.GetDistanceTraveled()));
+      }
     }
     else{
       Heltec.display->drawString(0, 0, "Red: " + String(sensorRGB.GetValueRGB(SensorRGB::REDLIGHT)));

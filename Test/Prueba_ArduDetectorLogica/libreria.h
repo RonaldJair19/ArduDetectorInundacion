@@ -1,8 +1,7 @@
 #include <Arduino.h>
 
 #define SEPARATION_DISTANCE 0.30
-class Scanner
-{
+class Scanner{
 private:
     /* data */
     uint8_t _colorsAssigned[13] = {2,3,4,5,6,7,2,3,4,5,6,7};
@@ -27,6 +26,7 @@ public:
     void SetCurrentTime(uint32_t currentTime);
     void CalculateElapsedTime();
     uint32_t GetElapsedTime();
+    uint32_t GetElapsedTime(uint32_t currentTime);
     void AddColorDetected(uint8_t newColor);
     uint8_t GetCountColor(Colors Color);
     uint8_t GetColorState();

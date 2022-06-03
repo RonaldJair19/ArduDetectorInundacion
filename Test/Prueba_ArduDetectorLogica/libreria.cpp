@@ -24,9 +24,14 @@ void Scanner::CalculateElapsedTime(){
     _elapsedTime = _currentTime - _previusTime;
 }
 
-uint32_t Scanner::GetElapsedTime(){
+uint32_t Scanner::GetElapsedTime(uint32_t currentTime){
+    _previusTime = _currentTime;
+    _currentTime = currentTime;
+    _elapsedTime = _currentTime - _previusTime;
     return _elapsedTime;
 }
+
+
 
 void Scanner::AddColorDetected(uint8_t newColor){
     if(_colorsAssigned[_indexMain] == newColor){
@@ -53,6 +58,7 @@ void Scanner::AddColorDetected(uint8_t newColor){
                 break;
         }
     _colorAdded[_indexMain] = newColor;
+    _presentColor = _colorAdded[_indexMain];
     _indexMain++;
     }
     else if((_blk != 0) && (_colorsAssigned[_indexMain-2] == newColor) && (newColor != GRAY)){
@@ -79,6 +85,7 @@ void Scanner::AddColorDetected(uint8_t newColor){
             default:
                 break;
         }
+        _presentColor = _colorAdded[_indexMain-1];
         _colorAdded[_indexMain] = COLORLESS;
     }
     // else if(newColor == GRAY){
@@ -87,9 +94,9 @@ void Scanner::AddColorDetected(uint8_t newColor){
     //     _colorAdded[_indexMain] = COLORLESS;
     //     _presentColor = _colorAdded[_indexMain];
     // }
-    if(_indexMain > 0){
-        _presentColor = _colorAdded[_indexMain-1];
-    }
+    // if(_indexMain > 0){
+    //     _presentColor = _colorAdded[_indexMain-1];
+    // }
 }
 
 uint8_t Scanner::GetCountColor(Colors Color){
