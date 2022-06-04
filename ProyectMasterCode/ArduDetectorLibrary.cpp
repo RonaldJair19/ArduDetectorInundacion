@@ -173,11 +173,10 @@ void Scanner::CalculateElapsedTime(){
     _elapsedTime = _currentTime - _previusTime;
 }
 
-uint32_t Scanner::GetElapsedTime(uint32_t currentTime){
+void Scanner::CalculateElapsedTime(uint32_t currentTime){
     _previusTime = _currentTime;
     _currentTime = currentTime;
     _elapsedTime = _currentTime - _previusTime;
-    return _elapsedTime;
 }
 
 uint32_t Scanner::GetElapsedTime(){
@@ -256,8 +255,8 @@ bool Scanner::AddColorDetected(uint8_t newColor){
     // }
 }
 
-uint8_t Scanner::GetCountColor(Colors Color){
-    switch (Color){
+uint8_t Scanner::GetCountColor(uint8_t colorNumber){
+    switch (colorNumber){
         case BLACK:
                 return _blk;
             break;

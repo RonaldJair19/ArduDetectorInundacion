@@ -74,9 +74,9 @@ public:
     void SetCurrentTime(uint32_t currentTime);
     void CalculateElapsedTime();
     uint32_t GetElapsedTime();
-    uint32_t GetElapsedTime(uint32_t currentTime);
+    void CalculateElapsedTime(uint32_t currentTime);
     bool AddColorDetected(uint8_t newColor);
-    uint8_t GetCountColor(Colors Color);
+    uint8_t GetCountColor(uint8_t colorNumber);
     uint8_t GetColorState();
     float GetDistanceTraveled();
     // ~Scanner();
