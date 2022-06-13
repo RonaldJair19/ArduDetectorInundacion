@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
-#define offsetNegative 100
-#define offsetPositive 150
+#define offsetNegative 75
+#define offsetPositive 75
 
 /* ===========================================*/
 /*              Class SensorRGB               */

@@ -31,44 +31,43 @@ void message(const uint8_t* payload, size_t size, int rssi)
 }
 
 void setup() {
-  Heltec.begin(true /*Display Enable*/, false /*LoRa Disable*/, true /*Serial Enable*/);
+  Heltec.begin(true /*Display Enable*/, true /*LoRa Disable*/, true /*Serial Enable*/);
   // Heltec.display->setContrast(255);
   // Heltec.display->clear();
   // Heltec.display->flipScreenVertically();
   // Heltec.display->setFont(ArialMT_Plain_10);
   // Serial.begin(9600);
-  // ttn.begin();
-  // ttn.onMessage(message); // declare callback function when is downlink from server
-  // ttn.personalize(devAddr, nwkSKey, appSKey);
-  // ttn.showStatus();
+  ttn.begin();
+  ttn.onMessage(message); // declare callback function when is downlink from server
+  ttn.personalize(devAddr, nwkSKey, appSKey);
+  ttn.showStatus();
   sensorRGB.InitSensorRGB();
-  sensorRGB.SetParametersColors(SensorRGB::BLACK, 900,900,700);
-  sensorRGB.SetParametersColors(SensorRGB::BLUE, 700,300,150);
-  sensorRGB.SetParametersColors(SensorRGB::GREEN, 700,400,400);
-  sensorRGB.SetParametersColors(SensorRGB::RED, 180,581,419);
-  scanner.SetSeparationDistance(0.30);
+  sensorRGB.SetParametersColors(SensorRGB::RED, 231,555,423);
+  sensorRGB.SetParametersColors(SensorRGB::ORANGE, 60,263,229);
+  sensorRGB.SetParametersColors(SensorRGB::YELLOW, 129,200,300);
+  sensorRGB.SetParametersColors(SensorRGB::GREEN, 500,336,354);
+  sensorRGB.SetParametersColors(SensorRGB::BLUE, 520,327,190);
+  sensorRGB.SetParametersColors(SensorRGB::BLACK, 700,743,571);
+  scanner.SetSeparationDistance(0.15);
 
 }
 
 void loop() {
-  //if(millis() > tiempoInicio + INTERVALO_MENSAJE){
-    //tiempoInicio = millis();
-   //}
     lpp.reset();
     Heltec.display->clear();
     sensorRGB.ReadRGB();
     Serial.print("R:");
-    Serial.print(sensorRGB.GetValueRGB(SensorRGB::REDLIGHT));     // muestra valor de variable rojo
+    Serial.print(sensorRGB.GetValueRGB(SensorRGB::REDLIGHT));
     Serial.print("\t");
     
 
     Serial.print("V:");
-    Serial.print(sensorRGB.GetValueRGB(SensorRGB::GREENLIGHT));      // muestra valor de variable verde
+    Serial.print(sensorRGB.GetValueRGB(SensorRGB::GREENLIGHT));
     Serial.print("\t");
     
     
     Serial.print("A:");
-    Serial.print(sensorRGB.GetValueRGB(SensorRGB::BLUELIGHT));     // muestra valor de variable azul
+    Serial.print(sensorRGB.GetValueRGB(SensorRGB::BLUELIGHT));
     Serial.println();
 
     Heltec.display->setTextAlignment(TEXT_ALIGN_LEFT);
@@ -90,12 +89,12 @@ void loop() {
         lpp.addDigitalOutput(2,scanner.GetCountColor(sensorRGB.GetDetectedColor()));
         lpp.addTIME(3,(scanner.GetElapsedTime()/1000));
         lpp.addTemperature(4,scanner.GetDistanceTraveled());
-          // if (ttn.sendBytes(lpp.getBuffer(), lpp.getSize())){
+          if (ttn.sendBytes(lpp.getBuffer(), lpp.getSize())){
             Serial.printf("TTN_CayenneLPP: %02X %02X %02X %02X %02X %02X %02X %02X\n", 
               lpp.getBuffer()[0], lpp.getBuffer()[1], 
               lpp.getBuffer()[2], lpp.getBuffer()[3],lpp.getBuffer()[4],
               lpp.getBuffer()[5],lpp.getBuffer()[6],lpp.getBuffer()[7]);
-          // }
+          }
       }
       if(sensorRGB.GetDetectedColor() == scanner.GetColorState()){
         Heltec.display->drawString(0, 0, "C: " + String(sensorRGB.GetDetectedColor()) + " L: "+String(scanner.GetCountColor(sensorRGB.GetDetectedColor())));

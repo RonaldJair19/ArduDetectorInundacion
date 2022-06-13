@@ -131,7 +131,7 @@ uint8_t TTN_CayenneLPP::addTemperature(uint8_t channel, float celsius)
     {
         return 0;
     }
-    int16_t val = celsius * 10;
+    int16_t val = celsius * 100;
     // buffer[cursor++] = channel;
     // buffer[cursor++] = LPP_TEMPERATURE;
     buffer[cursor++] = val >> 8;

@@ -102,7 +102,7 @@ bool SensorRGB::DetectColor(){
         return true;
     }
     /* =========== Detecting Black color ===========*/
-    if((_redLight >= _RedForBlackColor - offsetNegative && _redLight <= _RedForBlackColor  + offsetPositive) && (_greenLight >= _GreenForBlackColor - offsetNegative && _greenLight <= _GreenForBlackColor + offsetPositive) && (_blueLight >= _BlueForBlackColor - offsetNegative && _blueLight <= _BlueForBlackColor + offsetPositive)){
+    if((_redLight >= _RedForBlackColor - offsetNegative/* && _redLight <= _RedForBlackColor  + offsetPositive*/) && (_greenLight >= _GreenForBlackColor - offsetNegative /*&& _greenLight <= _GreenForBlackColor + offsetPositive*/) && (_blueLight >= _BlueForBlackColor - offsetNegative /*&& _blueLight <= _BlueForBlackColor + offsetPositive*/)){
         _colorState = BLACK;
         return true;
     }
@@ -285,5 +285,5 @@ uint8_t Scanner::GetColorState(){
 }
 
 float Scanner::GetDistanceTraveled(){
-    _distanceTraveledY = (_blk+_bl+_gr+_yw+_org+_re) * (_separationDistance);
+    _distanceTraveledY = ((_blk+_bl+_gr+_yw+_org+_re) * (_separationDistance));
 }
