@@ -41,6 +41,8 @@ Provides functionality to the methods defined in the header.
 Abstracts the operation of the GY-31 color sensor where the RGB photodiodes must be turned on or off to detect a color.
 
 - Attributes:
+
+
 ` 
 int8_t _colorState
 `
