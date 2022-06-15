@@ -8,8 +8,7 @@ In this repository are presented the codes and libraries related to the final pr
 ![Image text](https://github.com/RonaldJair19/ArduDetectorInundacion/blob/master/DiagramsAndImages/HeltecWirelessStick.png)
 
 - ### Sensor GY-031
-![Image text](https://github.com/RonaldJair19/ArduDetectorInundacion/blob/master/DiagramsAndImages/GY031.png?style=centerme)
-img[src$="centerme"] { display:block; margin: 0 auto; }
+![Image text](https://github.com/RonaldJair19/ArduDetectorInundacion/blob/master/DiagramsAndImages/GY031.png)
 
 - ### Circuit
 ![Image text](https://github.com/RonaldJair19/ArduDetectorInundacion/blob/master/DiagramsAndImages/CircuitHeltecSensor.png)
