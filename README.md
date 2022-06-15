@@ -67,6 +67,8 @@ enum Colors
 : Defines the colors to be sampled with the sensor, subsequently storing their RGB values for detection.
 
 - Main methods
+
+
 `
 SensorRGB(int8_t S0, int8_t S1, int8_t S2, int8_t S3, int8_t outputTCS)
 `
