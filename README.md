@@ -120,6 +120,7 @@ This class abstracts the operation that the prototype must have in general to sc
 `uint8_t _blk, _bl, _gr, _yw, _org, _re`: Counters that store the number of times a set color is detected.
 
 - Main methods
+
 `Scanner(/* args */)`: Empty builder
 
 `void CalculateElapsedTime(uint32_t currentTime)`:  Calculates the time that elapses between the detection of one color and another, it receives as argument `uint32_t currentTime` which corresponds to the instant in which a color is detected.
