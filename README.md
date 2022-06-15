@@ -5,8 +5,13 @@ In this repository are presented the codes and libraries related to the final pr
 
 ## Hardware materials used
 - ### Heltec Wireless Stick
+![Image text](https://github.com/RonaldJair19/ArduDetectorInundacion/blob/master/DiagramsAndImages/HeltecWirelessStick.png)
 
 - ### Sensor GY-031
+![Image text](https://github.com/RonaldJair19/ArduDetectorInundacion/blob/master/DiagramsAndImages/GY031.png)
+
+- ### Circuit
+![Image text](https://github.com/RonaldJair19/ArduDetectorInundacion/blob/master/DiagramsAndImages/CircuitHeltecSensor.png)
 
 ## Contents of the repository
 The following is a description of the contents of each folder and the functionalities contained in the codes.
