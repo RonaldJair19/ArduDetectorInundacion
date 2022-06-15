@@ -207,6 +207,6 @@ void loop() {
 
 ## Authors
 
-- Edwin Rivera
+- [@erivera02](https://github.com/erivera02)
 - [@eugenio05](https://github.com/eugenio05)
 - [@RonaldJair19](https://github.com/RonaldJair19)
