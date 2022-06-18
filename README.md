@@ -3,6 +3,17 @@
 
 In this repository are presented the codes and libraries related to the final prototype device for flood monitoring and early warning.
 
+## Contents of the repository
+The following is a description of the contents of each folder and the functionalities contained in the codes.
+
+/ ### Article proyect
+
+- ### ProyectMasterCode: 
+It contains the main code of the project and the libraries used within it.
+- ### Test: 
+It contains a calibration code for the color sensor used to detect the RGB values and display them on the OLED screen of the Heltec Wireless Stick board. It also contains a beta of the library developed for the prototype.
+- ### Diagrams and components
+
 ## Hardware materials used
 - ### Heltec Wireless Stick
 ![Image text](https://github.com/RonaldJair19/ArduDetectorInundacion/blob/master/DiagramsAndImages/HeltecWirelessStick.png)
@@ -12,15 +23,6 @@ In this repository are presented the codes and libraries related to the final pr
 
 - ### Circuit
 ![Image text](https://github.com/RonaldJair19/ArduDetectorInundacion/blob/master/DiagramsAndImages/CircuitHeltecSensor.png)
-
-## Contents of the repository
-The following is a description of the contents of each folder and the functionalities contained in the codes.
-
-- ### ProyectMasterCode: 
-It contains the main code of the project and the libraries used within it.
-- ### Test: 
-It contains a calibration code for the color sensor used to detect the RGB values and display them on the OLED screen of the Heltec Wireless Stick board. It also contains a beta of the library developed for the prototype.
-- ### Diagrams and components
 
 
 ## Documentation of the developed library
