@@ -6,7 +6,7 @@ In this repository are presented the codes and libraries related to the final pr
 ## Contents of the repository
 The following is a description of the contents of each folder and the functionalities contained in the codes.
 
-/ ### Article proyect
+- ### Article proyect
 
 - ### ProyectMasterCode: 
 It contains the main code of the project and the libraries used within it.
