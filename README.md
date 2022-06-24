@@ -3,6 +3,8 @@
 
 In this repository are presented the codes and libraries related to the final prototype device for flood monitoring and early warning.
 
+- [Video explaining this proyect](https://youtu.be/nv04_vqZcbw)
+
 ## Contents of the repository
 The following is a description of the contents of each folder and the functionalities contained in the codes.
 
