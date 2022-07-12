@@ -1,10 +1,10 @@
-#include "Arduino.h"
+#include <Arduino.h>
 #include "heltec.h"
 #include "ArduDetectorLibrary.h"
 #include <TTN_esp32.h>
 #include "TTN_CayenneLPP.h"
 #include "LoRaConfig.h" //Create this library and add your credentials of The Things Stack
-
+#include "Tone32.hpp"
 /* Board Heltec Wireless Stick */
 #define S0 12
 #define S1 13
@@ -12,10 +12,17 @@
 #define S3 23
 #define outputTCS 39
 
+/* Pin of Buzzer module */
+#define pinBuzzer 2
+#define tonePwmChanel 0; 
+
+
 SensorRGB sensorRGB(S0, S1, S2, S3, outputTCS);
 Scanner scanner;
 TTN_esp32 ttn ;
 TTN_CayenneLPP lpp;
+Tone32 _tone32(pinBuzzer, tonePwmChanel);
+
 
 void message(const uint8_t* payload, size_t size, int rssi)
 {
@@ -90,10 +97,11 @@ void loop() {
         lpp.addTIME(3,(scanner.GetElapsedTime()/1000));
         lpp.addTemperature(4,scanner.GetDistanceTraveled());
           if (ttn.sendBytes(lpp.getBuffer(), lpp.getSize())){
+            _tone32.playTone(2000,500);
             Serial.printf("TTN_CayenneLPP: %02X %02X %02X %02X %02X %02X %02X %02X\n", 
               lpp.getBuffer()[0], lpp.getBuffer()[1], 
               lpp.getBuffer()[2], lpp.getBuffer()[3],lpp.getBuffer()[4],
-              lpp.getBuffer()[5],lpp.getBuffer()[6],lpp.getBuffer()[7]);
+              lpp.getBuffer()[5],lpp.getBuffer()[6],lpp.getBuffer()[7]);     
           }
       }
       if(sensorRGB.GetDetectedColor() == scanner.GetColorState()){
@@ -113,4 +121,5 @@ void loop() {
     
     Heltec.display->setColor(WHITE);
     Heltec.display->display();
+    _tone32.update();
 }
