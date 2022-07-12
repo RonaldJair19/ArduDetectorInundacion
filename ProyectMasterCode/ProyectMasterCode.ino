@@ -14,7 +14,7 @@
 
 /* Pin of Buzzer module */
 #define pinBuzzer 2
-#define tonePwmChanel 0; 
+#define tonePwmChanel 0
 
 
 SensorRGB sensorRGB(S0, S1, S2, S3, outputTCS);
